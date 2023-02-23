@@ -25,11 +25,14 @@ class _DetailState extends State<Detail> {
               Stack(
                 children: [
                   Positioned(
-                    child: Image.asset(
-                      widget.movie.image,
-                      fit: BoxFit.fill,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.4,
+                    child: Hero(
+                      tag: widget.movie,
+                      child: Image.asset(
+                        widget.movie.image,
+                        fit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                      ),
                     ),
                   ),
                   Positioned(

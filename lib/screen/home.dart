@@ -138,68 +138,71 @@ class _HomeState extends State<Home> {
             ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Detail(movie: movieList[index]),
-                  )),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15),
+                return Hero(
+                  tag: movieList[index],
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Detail(movie: movieList[index]),
+                    )),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                bottomLeft: Radius.circular(15),
+                              ),
+                              child: Image.asset(
+                                movieList[index].image,
+                                fit: BoxFit.fill,
+                                width: MediaQuery.of(context).size.width * 0.3,
+                              ),
                             ),
-                            child: Image.asset(
-                              movieList[index].image,
-                              fit: BoxFit.fill,
-                              width: MediaQuery.of(context).size.width * 0.3,
+                            const SizedBox(width: 15),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Spacer(),
+                                Text(
+                                  movieList[index].name,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: primaryColorDark,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  movieList[index].catagory,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: primaryColorGrey,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    for (int i = 0;
+                                        i < movieList[index].nbStar;
+                                        i++)
+                                      const Icon(
+                                        Icons.star,
+                                        color: CompanyColors.colorYellow,
+                                      ),
+                                  ],
+                                ),
+                                const Spacer(),
+                              ],
                             ),
-                          ),
-                          const SizedBox(width: 15),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Spacer(),
-                              Text(
-                                movieList[index].name,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: primaryColorDark,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                movieList[index].catagory,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: primaryColorGrey,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  for (int i = 0;
-                                      i < movieList[index].nbStar;
-                                      i++)
-                                    const Icon(
-                                      Icons.star,
-                                      color: CompanyColors.colorYellow,
-                                    ),
-                                ],
-                              ),
-                              const Spacer(),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
