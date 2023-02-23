@@ -49,7 +49,7 @@ List<Film> listFilm = [
 List<Movie> movieList = [
   Movie(
     id: 1,
-    name: "fast and furious",
+    name: "Fast and furious",
     description:
         "Dom Toretto rassemble son équipe pour démanteler un complot à échelle mondiale mené par le tueur le plus implacable qu'ils aient jamais affronté, aussi redoutable avec une arme que derrière un volant : un homme qui n'est autre que le frère désavoué de Dom, Jakob.",
     image: "assets/images/movie/fate_of_the_furious.jpg",
