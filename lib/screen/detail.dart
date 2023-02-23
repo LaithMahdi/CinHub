@@ -1,7 +1,9 @@
 import 'package:cin_hub/controller/DetailController.dart';
 import 'package:cin_hub/model/movie.dart';
+import 'package:cin_hub/screen/bookDetail.dart';
 import 'package:cin_hub/static/MaterialColor.dart';
 import 'package:cin_hub/static/color.dart';
+import 'package:cin_hub/static/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +41,7 @@ class _DetailState extends State<Detail> {
                     left: 20,
                     top: 20,
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.88,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -184,7 +186,13 @@ class _DetailState extends State<Detail> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BookDetail(movie: widget.movie),
+                          ),
+                        ),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -193,7 +201,7 @@ class _DetailState extends State<Detail> {
                           ),
                         ),
                         child: const Text(
-                          "book",
+                          "Book now",
                           style: TextStyle(
                             fontSize: 18,
                             color: primaryColorLight,
