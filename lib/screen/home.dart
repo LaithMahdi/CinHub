@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
 
   init() async {
     await Timer(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
       () => setState(() {
         daley = true;
       }),
@@ -42,24 +42,38 @@ class _HomeState extends State<Home> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
+            const DrawerHeader(
+              decoration: BoxDecoration(
                 color: CompanyColors.colorYellow,
               ),
-              child: Center(child: Text("$name")),
+              child: Center(
+                  child: Text(
+                "CinHub",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                  color: primaryColorLight,
+                ),
+              )),
             ),
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: CompanyColors.colorYellow,
               ),
-              child: InkWell(
-                child: const Text("Logout"),
-                onTap: () {
-                  sharedPref!.clear();
-                  Get.offAllNamed("/");
-                },
+              child: Row(
+                children: [
+                  InkWell(
+                    child: const Text("Logout"),
+                    onTap: () {
+                      sharedPref!.clear();
+                      Get.offAllNamed("/");
+                    },
+                  ),
+                  const Spacer(),
+                  const Icon(Icons.logout),
+                ],
               ),
             )
           ],
