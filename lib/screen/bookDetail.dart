@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:cin_hub/controller/DetailController.dart';
+import 'package:cin_hub/screen/home.dart';
+import 'package:cin_hub/screen/payment.dart';
 import 'package:cin_hub/static/MaterialColor.dart';
 import 'package:cin_hub/static/color.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +55,7 @@ class _BookDetailState extends State<BookDetail> {
 
   init() async {
     await Timer(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
       () => setState(() {
         daley = true;
       }),
@@ -302,7 +304,37 @@ class _BookDetailState extends State<BookDetail> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.15),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (widget.movie.nbPerson == 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.red.shade500,
+                              duration: const Duration(seconds: 2),
+                              behavior: SnackBarBehavior.floating,
+                              clipBehavior: Clip.none,
+                              padding: const EdgeInsets.all(20),
+                              margin: const EdgeInsets.all(20),
+                              content: const Text(
+                                "No place avalible",
+                                style: TextStyle(
+                                  color: primaryColorLight,
+                                ),
+                              ),
+                            ),
+                          );
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Home(),
+                              ));
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Payment(),
+                              ));
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(MediaQuery.of(context).size.width, 0),
                         padding: const EdgeInsets.all(20),
@@ -311,7 +343,7 @@ class _BookDetailState extends State<BookDetail> {
                         ),
                       ),
                       child: const Text(
-                        "Generate your ticket",
+                        "Continue your payment",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
